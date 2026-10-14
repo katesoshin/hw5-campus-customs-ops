@@ -1,0 +1,132 @@
+{
+  "run_date": "2026-10-14",
+  "shop_date": "2026-08-31",
+  "database": "data/campus_customs_new.db (reset from campus_customs.db before the run)",
+  "model": "gpt-6-luna (all agents)",
+  "run_order": [
+    101,
+    102,
+    103
+  ],
+  "checking": {
+    "start": 3400.0,
+    "end": 152.0,
+    "total_paid": 3248.0,
+    "matches_cash_accounts": true
+  },
+  "tickets": [
+    {
+      "id": 101,
+      "final_status": "resolved",
+      "subject": "Bulldog tee (Tauhid Zaman, 1 x CC-TEE-WHITE S)",
+      "runs": [
+        "f80a55f85aee",
+        "4a204651652e"
+      ],
+      "tokens": 183464,
+      "outcome": "Size S was out of stock and Bulldog Print Co was blocked by overdue invoice 501. Invoice 501 ($840) was paid, which unblocked the vendor; a follow-up run ordered 1 tee (PO #1, $8, ETA 2026-09-05). Customer reply draft #1 waits for a human to send.",
+      "cash_change": -848.0,
+      "agents": {
+        "boss": "Called Inventory first, then Accounting and Customer Service; set status in_progress -> waiting_on_human; wrap-ups listed the approvals and draft for the owner.",
+        "inventory": "Confirmed 0 on hand (short 1), matched Bulldog Print Co, found it blocked by invoice 501, did not file a PO while blocked; in the follow-up run filed PO #1 for $8 once the invoice was paid.",
+        "accounting": "Filed payment request #1 for invoice 501 ($840). A third, deep call (Customer Service -> Inventory -> Accounting) also filed rent request #2 under this ticket, which was out of scope and rejected. Confirmed cash before the PO.",
+        "customer_service": "Wrote draft #1 to Tauhid: out of stock, no restock date promised, $28 list price; in the follow-up run confirmed the draft was still accurate instead of duplicating it.",
+        "facilities": "Not called."
+      },
+      "human_approvals": [
+        {
+          "approval_id": 1,
+          "kind": "invoice",
+          "ref_id": 501,
+          "amount": 840.0,
+          "requested_by": "accounting",
+          "decision": "approved",
+          "decided_by": "Kate",
+          "payment_id": 1
+        },
+        {
+          "approval_id": 2,
+          "kind": "rent",
+          "ref_id": 1,
+          "amount": 2400.0,
+          "requested_by": "accounting",
+          "decision": "rejected",
+          "decided_by": "Kate",
+          "note": "Rent belongs to ticket #102; filed under #101 by mistake."
+        },
+        {
+          "approval_id": 3,
+          "kind": "purchase_order",
+          "ref_id": 1,
+          "amount": 8.0,
+          "requested_by": "inventory",
+          "decision": "approved",
+          "decided_by": "Kate",
+          "payment_id": 2
+        }
+      ],
+      "drafts_for_human_to_send": [
+        1
+      ]
+    },
+    {
+      "id": 102,
+      "final_status": "resolved",
+      "subject": "Rent due (Elm City Properties, lease 1)",
+      "runs": [
+        "28fbef399a3a"
+      ],
+      "tokens": 39028,
+      "outcome": "Rent notice verified against lease 1 ($2,400 due 2026-09-02). Rent paid; lease next due moved to 2026-10-02. Landlord draft #2 waits for a human to send.",
+      "cash_change": -2400.0,
+      "agents": {
+        "boss": "Called Facilities only; set status in_progress -> waiting_on_human; wrap-up asked the owner to approve #4 and send draft #2.",
+        "facilities": "Checked the notice against lease 1, wrote landlord draft #2, and handed the payment to Accounting.",
+        "accounting": "Checked cash ($2,552 covers it) and filed rent request #4 for $2,400.",
+        "inventory": "Not called.",
+        "customer_service": "Not called."
+      },
+      "human_approvals": [
+        {
+          "approval_id": 4,
+          "kind": "rent",
+          "ref_id": 1,
+          "amount": 2400.0,
+          "requested_by": "accounting",
+          "decision": "approved",
+          "decided_by": "Kate",
+          "payment_id": 3
+        }
+      ],
+      "drafts_for_human_to_send": [
+        2
+      ]
+    },
+    {
+      "id": 103,
+      "final_status": "resolved",
+      "subject": "Bulk hoodie discount (Yale AI Club, 20 x CC-HOOD-NAVY M)",
+      "runs": [
+        "6a996516e88a"
+      ],
+      "tokens": 62112,
+      "outcome": "Only 8 of 20 in stock. The 12-unit restock ($264) is more than the $152 left in checking, so no PO was filed. Accounting cleared up to $43.50/unit (25% off list, 49.4% margin). Draft #3 offers the 8 available, with the price subject to owner confirmation.",
+      "cash_change": 0.0,
+      "agents": {
+        "boss": "Called Inventory first, then Accounting and Customer Service; checked cash; set status in_progress -> waiting_on_human.",
+        "inventory": "Found 8 on hand (short 12), vendor able to ship, priced the 12-unit restock at $264, asked Accounting about cash, and held the PO.",
+        "accounting": "Margin check: max $43.50/unit within house rules; confirmed $152 can't cover the $264 restock.",
+        "customer_service": "Wrote draft #3 to Yale AI Club: 8 available now, no promise on the other 12 or a date, $43.50 as a possible price pending confirmation.",
+        "facilities": "Not called."
+      },
+      "human_approvals": [],
+      "drafts_for_human_to_send": [
+        3
+      ],
+      "open_owner_decisions": [
+        "Confirm the bulk price (up to $43.50/unit) and send draft #3.",
+        "Decide on the 12-hoodie restock ($264) when cash allows."
+      ]
+    }
+  ]
+}

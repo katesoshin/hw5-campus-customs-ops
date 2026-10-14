@@ -1,0 +1,24 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# frontend
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# run-time scratch
+output/audit_trail.lock
+output/*.tmp
+*.json.tmp
+
+# misc
+.DS_Store
+data.zip

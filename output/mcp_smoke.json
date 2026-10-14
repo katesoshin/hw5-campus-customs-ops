@@ -1,0 +1,80 @@
+{
+  "server": "campus-customs (stdio, from .mcp.json)",
+  "database": "data/campus_customs_new.db",
+  "tools_listed": [
+    "check_stock",
+    "get_vendor_status",
+    "get_lease"
+  ],
+  "results": [
+    {
+      "prompt": "Check stock for 1 white tee in size S (CC-TEE-WHITE) for ticket 101.",
+      "tool": "check_stock",
+      "arguments": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty_needed": 1
+      },
+      "output": {
+        "found": true,
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "location": "Aisle B",
+        "on_hand": 0,
+        "qty_needed": 1,
+        "enough_stock": false,
+        "shortfall": 1
+      },
+      "matches_db": true
+    },
+    {
+      "prompt": "Check whether Bulldog Print Co (vendor 1) will ship, and list its open invoices, for ticket 101.",
+      "tool": "get_vendor_status",
+      "arguments": {
+        "vendor_id": 1
+      },
+      "output": {
+        "found": true,
+        "vendor_id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5,
+        "shop_today": "2026-08-31",
+        "open_invoices": [
+          {
+            "invoice_id": 501,
+            "amount": 840.0,
+            "due_date": "2026-08-28",
+            "description": "Rush reprint CC-TEE-WHITE S",
+            "overdue": true,
+            "days_overdue": 3
+          }
+        ],
+        "total_open_amount": 840.0,
+        "will_ship": false
+      },
+      "matches_db": true
+    },
+    {
+      "prompt": "Look up lease 1 — the rent amount and when it's due — for ticket 102.",
+      "tool": "get_lease",
+      "arguments": {
+        "lease_id": 1
+      },
+      "output": {
+        "found": true,
+        "lease_id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400.0,
+        "next_due": "2026-09-02",
+        "shop_today": "2026-08-31",
+        "days_until_due": 2,
+        "overdue": false,
+        "notes": null
+      },
+      "matches_db": true
+    }
+  ]
+}
