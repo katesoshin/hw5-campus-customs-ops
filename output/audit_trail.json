@@ -18790,5 +18790,174 @@
       "input_tokens": 58450,
       "output_tokens": 3662
     }
+  },
+  {
+    "ts": "2026-10-15T00:18:02.417+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "run_start",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "prompt": "Read-only check: how many CC-HOOD-NAVY size M are on hand? Don't write notes, file anything, or delegate.",
+    "tool_calls": [],
+    "tool_returns": [],
+    "model": "gpt-6-luna",
+    "usage": {}
+  },
+  {
+    "ts": "2026-10-15T00:18:02.423+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "step",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "step": 1,
+    "node": "UserPromptNode",
+    "prompt": "Read-only check: how many CC-HOOD-NAVY size M are on hand? Don't write notes, file anything, or delegate.",
+    "tool_calls": [],
+    "tool_returns": [],
+    "model": "gpt-6-luna",
+    "usage": {
+      "requests": 0,
+      "tool_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    }
+  },
+  {
+    "ts": "2026-10-15T00:18:02.428+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "step",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "step": 2,
+    "node": "ModelRequestNode",
+    "tool_calls": [],
+    "tool_returns": [],
+    "model": "gpt-6-luna",
+    "usage": {
+      "requests": 0,
+      "tool_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    }
+  },
+  {
+    "ts": "2026-10-15T00:18:06.803+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "step",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "step": 3,
+    "node": "CallToolsNode",
+    "tool_calls": [
+      {
+        "tool": "check_stock",
+        "args": {
+          "sku": "CC-HOOD-NAVY",
+          "size": "M"
+        }
+      }
+    ],
+    "tool_returns": [],
+    "model": "gpt-6-luna",
+    "usage": {
+      "requests": 1,
+      "tool_calls": 0,
+      "input_tokens": 1938,
+      "output_tokens": 27
+    }
+  },
+  {
+    "ts": "2026-10-15T00:18:06.830+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "step",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "step": 4,
+    "node": "ModelRequestNode",
+    "tool_calls": [],
+    "tool_returns": [
+      {
+        "tool": "check_stock",
+        "kind": "tool-return",
+        "content": "{\"found\":true,\"sku\":\"CC-HOOD-NAVY\",\"name\":\"Basic Hoodie Big Yale\",\"size\":\"M\",\"location\":\"Aisle A\",\"on_hand\":8,\"qty_needed\":1,\"enough_stock\":true,\"shortfall\":0}"
+      }
+    ],
+    "model": "gpt-6-luna",
+    "usage": {
+      "requests": 1,
+      "tool_calls": 1,
+      "input_tokens": 1938,
+      "output_tokens": 27
+    }
+  },
+  {
+    "ts": "2026-10-15T00:19:15.739+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "step",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "step": 5,
+    "node": "CallToolsNode",
+    "tool_calls": [],
+    "tool_returns": [],
+    "model": "gpt-6-luna",
+    "usage": {
+      "requests": 2,
+      "tool_calls": 1,
+      "input_tokens": 3967,
+      "output_tokens": 8027
+    }
+  },
+  {
+    "ts": "2026-10-15T00:19:15.750+00:00",
+    "run_id": "072fc449f0a0",
+    "agent_run_id": "072fc449f0a0-inventory-90778d",
+    "event": "run_error",
+    "agent": "inventory",
+    "ticket_id": 103,
+    "chain": [
+      "inventory"
+    ],
+    "depth": 0,
+    "tool_calls": [],
+    "tool_returns": [],
+    "error": "UnexpectedModelBehavior: Model token limit (8000) exceeded before any response was generated. Increase the `max_tokens` model setting, or simplify the prompt to result in a shorter response that will fit within the limit.",
+    "model": "gpt-6-luna",
+    "usage": {
+      "requests": 2,
+      "tool_calls": 1,
+      "input_tokens": 3967,
+      "output_tokens": 8027
+    }
   }
 ]

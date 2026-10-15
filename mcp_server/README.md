@@ -37,7 +37,7 @@ of touching the database directly. Built with [FastMCP](https://gofastmcp.com).
 | `reject_approval(approval_id, decided_by, note)` | `approvals`, `purchase_orders` | **Human only.** Rejects a request. |
 | `close_ticket(ticket_id, closed_by, note)` | `tickets`, `approvals` | **Human / desk only.** Marks a ticket resolved; refused while it has pending approvals. |
 
-The agent team (`backend/agents.py`) gives each agent only the tools its role needs and never
+The agent team (`backend/main.py`) gives each agent only the tools its role needs and never
 exposes the two human-only tools.
 
 ## Run

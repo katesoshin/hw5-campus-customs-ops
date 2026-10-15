@@ -12,24 +12,52 @@ backend runs the team, and a **React** dashboard lets a human watch the agents a
 
 ```
 hw5/
-├── AI_prompts.md            prompt log, one section per problem
-├── requirements.txt         Python dependencies
-├── .env.example             copy to .env and add your PORTKEY_API_KEY
-├── .mcp.json                MCP connection for Claude Code / other MCP clients
+├── AI_prompts.md
+├── requirements.txt
+├── .env.example
+├── .gitignore
+├── .mcp.json
+├── README.md
 ├── data/
-│   ├── campus_customs.db        original database (never modified, the reset point)
-│   └── campus_customs_new.db    working copy the app reads and writes
-├── mcp_server/              FastMCP server: the shop's tools (server.py + README.md)
-├── backend/                 FastAPI app + the five PydanticAI agents
-│   ├── main.py              API routes (uvicorn main:app)
-│   ├── models.py            data types
-│   ├── agents.py            agents, delegation, agent loop + audit logging
-│   ├── config.py, audit.py, run.py
-│   └── prompts/             boss.md, inventory.md, accounting.md, facilities.md, customer_service.md
-├── frontend/                React + Vite + TypeScript dashboard
-└── output/                  harness.md, design.md, desk_tickets.html, resolved_*.{json,html},
-                             audit_trail.json, mcp_smoke.json, github_url.txt
+│   ├── campus_customs.db
+│   └── campus_customs_new.db
+├── mcp_server/
+│   ├── server.py
+│   └── README.md
+├── frontend/
+├── backend/
+│   ├── main.py
+│   ├── models.py
+│   └── prompts/
+│       ├── boss.md
+│       ├── inventory.md
+│       ├── accounting.md
+│       ├── facilities.md
+│       └── customer_service.md
+└── output/
+    ├── harness.md
+    ├── mcp_smoke.json
+    ├── desk_tickets.html
+    ├── design.md
+    ├── resolved_tickets.json
+    ├── resolved_board.html
+    ├── audit_trail.json
+    └── github_url.txt
 ```
+
+| Path | What it is |
+|---|---|
+| `AI_prompts.md` | Prompt log, one section per problem |
+| `.env.example` | Copy to `.env` and add your `PORTKEY_API_KEY` (the real `.env` is never committed) |
+| `.mcp.json` | MCP connection for Claude Code / other MCP clients |
+| `data/campus_customs.db` | Original database: never modified, the reset point |
+| `data/campus_customs_new.db` | Working copy the app reads and writes |
+| `mcp_server/` | FastMCP server with the shop's tools (list in its README) |
+| `frontend/` | React + Vite + TypeScript dashboard |
+| `backend/main.py` | Agent team, audit trail, FastAPI routes, and a command-line runner |
+| `backend/models.py` | Data types (agent reports, audit records, run state) |
+| `backend/prompts/` | One prompt per agent |
+| `output/` | Harness, design notes, plan vs. actual, results, audit trail, repo URL |
 
 > Note: the working copy `data/campus_customs_new.db` is checked in **after** our full three-ticket
 > run (checking = $152, all tickets resolved), so you can see the results. Reset it (below) before
@@ -106,7 +134,7 @@ Open http://localhost:5173. The board calls the backend at `http://localhost:800
 Our own run's results (plan vs. actual, cash ledger, screenshots) are in `output/desk_tickets.html`,
 `output/resolved_tickets.json` and `output/resolved_board.html`.
 
-You can also run a ticket from the command line: `python -m backend.run --ticket 101` (from the repo root).
+You can also run a ticket from the command line: `cd backend && python main.py --ticket 101`.
 
 ## Safety in one paragraph
 

@@ -177,10 +177,13 @@ agent (not itself). The caller waits for the teammate's `AgentReport`/`BossRepor
 
 **Files.**
 - `backend/models.py`: data types (`AgentReport`, `BossReport`, `HumanAction`, `DelegationResult`, `AuditRecord`, `TeamDeps`, `RunBudget`).
-- `backend/agents.py`: the five agents, per-role MCP tool filters, `delegate`, and the agent loop (`run_agent` steps through `agent.iter()` node by node).
-- `backend/audit.py`: appends to `output/audit_trail.json`.
-- `backend/config.py`: model, Portkey, limits.
-- `backend/run.py`: CLI. `python -m backend.run --ticket 101`, or `--agent inventory --task "..."`.
+- `backend/main.py`, in five sections:
+  1. **Config**: model, Portkey, and limits.
+  2. **Audit trail**: appends to `output/audit_trail.json`.
+  3. **Agent team**: the five agents, per-role MCP tool filters, `delegate`, and the agent loop (`run_agent` steps through `agent.iter()` node by node).
+  4. **API routes**: the FastAPI app.
+  5. **CLI**: `python main.py --ticket 101`, or `--agent inventory --task "..."`, run from `backend/`.
+- `backend/prompts/`: one prompt file per agent.
 
 **Audit trail.** `output/audit_trail.json` is a JSON array that only grows. It is never cleared
 between runs. Each run writes `run_start`, then one `step` record per agent-loop node
@@ -261,7 +264,7 @@ clears them.
   `get_cash_position` before each new spend (Accounting confirmed rent was still covered before
   approving the $8 PO).
 
-**Token limits** (`backend/config.py`)
+**Token limits** (config section of `backend/main.py`)
 - **One shared budget per top-level run.** Delegated agents draw from the same usage counters, so
   a chain of delegations can't multiply the spend: `request_limit=40`, `tool_calls_limit=80`,
   `total_tokens_limit=250,000`. Going over stops the whole run, and it's logged as `run_error`.
